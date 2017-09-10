@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mike Yockey</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="header">
+        <div class="header__logo">
+          <%= image_tag 'yockmark.svg' %>
+        </div>
+      </div>
+      <nav class="nav">
+        <%= render 'nav' %>
+      </nav>
+      <div class="content">
+        <%= yield %>
+      </div>
+      <nav id="mobile-nav">
+        <%= render 'nav' %>
+      </nav>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,19 @@
+version: "3"
+services:
+  db:
+    image: postgres:9
+    ports:
+      - "5432"
+    networks:
+      - backend
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  rails:
+    image: yock/mikeyockey-rails:latest
+    ports:
+      - "3000:80"
+networks:
+  backend:
+
+volumes:
+  db-data:

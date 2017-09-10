@@ -1,0 +1,13 @@
+.post-summary {
+  display: flex;
+  align-items: baseline;
+
+  &__title {
+    padding: 0 5px;
+  }
+
+  &__posted-at {
+    padding: 0 5px;
+    font-size: x-small;
+  }
+}
