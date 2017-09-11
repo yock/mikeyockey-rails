@@ -8,4 +8,5 @@ COPY Gemfile* $APP_HOME/
 RUN bundle install
 
 COPY . $APP_HOME
-CMD ["bin/rails", "server", "--port", "3000", "--binding", "0.0.0.0"]
+ENTRYPOINT ["bin/rails"]
+CMD ["server", "--port", "3000", "--binding", "0.0.0.0"]

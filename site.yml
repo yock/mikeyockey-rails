@@ -1,0 +1,6 @@
+---
+- hosts: all
+  tasks:
+    - name: Docker Image
+      docker_service:
+        project_src: /mikeyockey-rails
