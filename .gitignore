@@ -22,5 +22,6 @@
 
 .byebug_history
 
-# Ansible retry file
+# Ansible
 site.retry
+.vault-pwd

@@ -1,6 +1,14 @@
 ---
 - hosts: all
+  remote_user: myockey
   tasks:
-    - name: Docker Image
+    - name: Clone project repo
+      git:
+        repo: ssh://git@github.com/yock/mikeyockey-rails.git
+        dest: ~/src
+
+    - name: Docker
       docker_service:
-        project_src: /mikeyockey-rails
+        project_src: ~/src
+      env:
+        RAILS_ENV: production
