@@ -9,4 +9,3 @@ RUN bundle install
 
 COPY . $APP_HOME
 ENTRYPOINT ["bin/rails"]
-CMD ["bin/rails", "server", "--port", "3000", "--binding", "0.0.0.0"]
