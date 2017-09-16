@@ -22,6 +22,6 @@ test:
 
 production:
   adapter: postgresql
-  host: db
-  database: mikeyockey_production
+  host: postgres
+  username: postgres
   pool: 5
