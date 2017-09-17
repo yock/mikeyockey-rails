@@ -16,7 +16,6 @@
     - name: Pull Docker image for site
       docker_image:
         name: yock/mikeyockey-rails:latest
-        force: yes
 
     - name: Start Database
       docker_container:
