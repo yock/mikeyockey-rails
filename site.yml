@@ -24,8 +24,21 @@
         image: postgres:9
         published_ports:
           - 5432:5432
+
+    - name: Precompile assets
+      docker_container:
+        name: assets
+        image: yock/mikeyockey-rails
+        command: assets:precompile
+        detach: no
         volumes:
-          - /var/lib/postgresql/data
+          - rails-assets:/mikeyockey-rails/public/assets
+        links:
+          - "postgres:postgres"
+        env:
+          RAILS_ENV: production
+          SECRET_KEY_BASE: "{{ secret_key_base }}"
+          RAILS_LOG_TO_STDOUT: true
 
     - name: Run database migrations
       docker_container:
@@ -46,6 +59,8 @@
         image: yock/mikeyockey-rails
         command: server
         log_driver: journald
+        volumes:
+          - rails-assets:/mikeyockey-rails/public/assets
         published_ports:
           - 80:3000
         links:
@@ -54,3 +69,4 @@
           RAILS_ENV: production
           SECRET_KEY_BASE: "{{ secret_key_base }}"
           RAILS_LOG_TO_STDOUT: true
+          RAILS_SERVE_STATIC_FILES: true
