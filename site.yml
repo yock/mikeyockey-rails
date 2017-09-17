@@ -1,6 +1,8 @@
 ---
 - hosts: all
   remote_user: myockey
+  vars_files:
+    - vault.yml
   tasks:
     - name: Clone project repo
       git:
@@ -35,18 +37,20 @@
           - "postgres:postgres"
         env:
           RAILS_ENV: production
-          SECRET_KEY_BASE: 7cb7bf4edcf9c118975ad21690989c69cb3cb102ffb3bea2eaa147f04392e5423eea768905d2be9674a9584412cac3286bb78c6216ce993d67601af493fd4764
+          SECRET_KEY_BASE: "{{ secret_key_base }}"
+          RAILS_LOG_TO_STDOUT: true
 
     - name: Start app
       docker_container:
         name: rails
         image: yock/mikeyockey-rails
         command: server
-        detach: no
-        links:
-          - "postgres:postgres"
+        log_driver: journald
         published_ports:
           - 80:3000
+        links:
+          - "postgres:postgres"
         env:
           RAILS_ENV: production
-          SECRET_KEY_BASE: 7cb7bf4edcf9c118975ad21690989c69cb3cb102ffb3bea2eaa147f04392e5423eea768905d2be9674a9584412cac3286bb78c6216ce993d67601af493fd4764
+          SECRET_KEY_BASE: "{{ secret_key_base }}"
+          RAILS_LOG_TO_STDOUT: true
